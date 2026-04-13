@@ -3,18 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employer extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'name',
-        'email',
-        'phone',
-        'address',
+        'logo',
+        'payroll_start_year',
+        'company_number',
+        'address_line_1',
+        'address_line_2',
+        'address_line_3',
+        'address_line_4',
+        'postcode',
+        'country',
     ];
 
-    public function users()
+    public function hmrc()
     {
-        return $this->hasMany(User::class);
+        return $this->hasOne(EmployerHrmc::class);
     }
 }
